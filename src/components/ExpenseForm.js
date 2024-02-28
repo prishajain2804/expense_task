@@ -19,6 +19,7 @@ function ExpenseForm(props) {
     setTitle("");
     setDate("");
     setAmount("");
+    
   };
   return (
     <div>

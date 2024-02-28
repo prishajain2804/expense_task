@@ -1,7 +1,10 @@
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseItem from "./components/ExpenseItem";
-import { useState,useEffect } from "react";
+import { useState,useEffect, createContext } from "react";
+import Expenses from "./components/Expenses";
 
+
+export const ExpenseContext = createContext();
 function App() {
   const [expenses,setExpenses] = useState([
     { title: "Soap", date: new Date(2022, 11, 26), amount: 200 },
@@ -22,18 +25,10 @@ function App() {
   },[expenses])
  
   return (
-    <>
+    <ExpenseContext.Provider value={expenses}>
       <ExpenseForm addExpense={handelAddExpense}></ExpenseForm>
-      {expenses.map((expense)=>{
-        return <ExpenseItem expense={expense} />
-      })}
-      {/* <ExpenseItem 
-      expense={expenses[0]} />
-      <ExpenseItem 
-     expense={expenses[1]} />
-      <ExpenseItem 
-      expense={expenses[2]} /> */}
-    </>
+      <Expenses  />
+    </ExpenseContext.Provider>
   );
 }
 
